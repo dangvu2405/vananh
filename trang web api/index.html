@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Sách Trực Tuyến - BookHaven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body id="home-page-body"> 
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">📚 BookHaven</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Trang Chủ</a></li>
+                    <li><a href="#categories-section">Danh Mục</a></li>
+                    <li><a href="#featured-books-section">Tất Cả Sách</a></li>
+                    <li><a href="#">Giới Thiệu</a></li>
+                    <li><a href="#">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions" id="header-actions-container"> 
+                <button class="search-btn" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+                
+                <a href="login.html" class="user-account" aria-label="Đăng nhập"><i class="fas fa-user"></i> Đăng Nhập</a>
+                <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="container hero-content">
+                <h1>Khám Phá Thế Giới Tri Thức</h1>
+                <p>Hàng ngàn đầu sách chọn lọc từ các tác giả và nhà xuất bản uy tín.</p>
+                <a href="#featured-books-section" class="btn btn-primary">Xem Sách Ngay</a>
+            </div>
+        </section>
+
+        <section id="featured-books-section" class="featured-books section-padding">
+            <div class="container">
+                <h2 class="section-title">Tất Cả Sách</h2>
+                <div class="book-grid" id="book-grid-container">
+                    <!-- JavaScript sẽ chèn các thẻ sách vào đây -->
+                </div>
+                
+                <div class="pagination-controls" id="pagination-container">
+                    <!-- JavaScript sẽ chèn các nút phân trang vào đây -->
+                </div>
+            </div>
+        </section>
+
+        <section id="categories-section" class="categories section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">Khám Phá Theo Danh Mục</h2>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <i class="fas fa-book-open category-icon"></i>
+                        <h3>Văn Học</h3>
+                        <p>Tiểu thuyết, truyện ngắn...</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <i class="fas fa-chart-line category-icon"></i>
+                        <h3>Kinh Tế</h3>
+                        <p>Quản trị, đầu tư...</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <i class="fas fa-brain category-icon"></i>
+                        <h3>Kỹ Năng Sống</h3>
+                        <p>Phát triển bản thân...</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <i class="fas fa-child category-icon"></i>
+                        <h3>Sách Thiếu Nhi</h3>
+                        <p>Truyện tranh, sách tô màu...</p>
+                    </a>
+                     <a href="#" class="category-card">
+                        <i class="fas fa-laptop-code category-icon"></i>
+                        <h3>Công Nghệ</h3>
+                        <p>Lập trình, AI, Mạng...</p>
+                    </a>
+                     <a href="#" class="category-card">
+                        <i class="fas fa-atom category-icon"></i>
+                        <h3>Khoa Học</h3>
+                        <p>Vật lý, Sinh học...</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter-signup section-padding">
+            <div class="container">
+                <h2 class="section-title">Đăng Ký Nhận Tin</h2>
+                <p>Nhận thông tin về sách mới và các chương trình khuyến mãi đặc biệt!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Nhập email của bạn..." aria-label="Email" required>
+                    <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p>&copy; <span id="current-year"></span> BookHaven. Bảo lưu mọi quyền.</p>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="fetchBookImages.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
