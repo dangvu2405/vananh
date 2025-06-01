@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - BookHaven</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .checkout-steps {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        .step-icon {
+            background-color: #e9ecef;
+            color: #6c757d;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .step-divider {
+            height: 2px;
+            background-color: #e9ecef;
+            flex-grow: 1;
+            margin-top: 25px;
+        }
+        .step.active .step-icon {
+            background-color: #007bff;
+            color: white;
+        }
+        .step.completed .step-icon {
+            background-color: #28a745;
+            color: white;
+        }
+        .checkout-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .payment-method-card {
+            border: 2px solid transparent;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .payment-method-card:hover {
+            border-color: #ccc;
+        }
+        .payment-method-card.selected {
+            border-color: #007bff;
+            background-color: rgba(0,123,255,0.05);
+        }
+        .payment-method-card img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        .animate-checkout {
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .custom-control-input:checked ~ .custom-control-label::before {
+            border-color: #007bff;
+            background-color: #007bff;
+        }
+        .order-summary-sticky {
+            position: sticky;
+            top: 20px;
+        }
+        .invalid-feedback {
+            display: none;
+        }
+        .form-control.is-invalid ~ .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+<body id="checkout-page-body" class="d-flex flex-column min-vh-100">
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">📚 BookHaven</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="index.html#categories-section">Danh Mục</a></li>
+                    <li><a href="index.html#featured-books-section">Tất Cả Sách</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="user-account" aria-label="Đăng nhập"><i class="fas fa-user"></i> Đăng Nhập</a>
+                <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="cart-progress-bar">
+        <div class="container">
+            <ul class="progress-steps d-flex justify-content-center list-unstyled">
+                <li class="step completed">
+                    <span class="step-icon"><i class="fas fa-shopping-cart"></i></span>
+                    <span class="step-label">Giỏ hàng</span>
+                </li>
+                <li class="step-divider"></li>
+                <li class="step active">
+                    <span class="step-icon"><i class="fas fa-address-card"></i></span>
+                    <span class="step-label">Thông tin</span>
+                </li>
+                <li class="step-divider"></li>
+                <li class="step">
+                    <span class="step-icon"><i class="fas fa-credit-card"></i></span>
+                    <span class="step-label">Thanh toán</span>
+                </li>
+                <li class="step-divider"></li>
+                <li class="step">
+                    <span class="step-icon"><i class="fas fa-check-circle"></i></span>
+                    <span class="step-label">Hoàn tất</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="section-padding flex-grow-1">
+        <div class="container">
+            <h1 class="section-title mb-4">Thanh Toán</h1>
+            
+            <div id="checkout-alert" class="alert alert-danger d-none mb-4" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="checkout-alert-message"></span>
+            </div>
+            
+            <div class="row">
+                <!-- Thông tin giao hàng -->
+                <div class="col-lg-8 mb-4">
+                    <div class="card shadow-sm animate-checkout">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                Thông Tin Giao Hàng
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="shipping-form" novalidate>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="fullname" class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="fullname" required>
+                                        <div class="invalid-feedback">Vui lòng nhập họ tên</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control" id="phone" pattern="[0-9]{10}" required>
+                                        <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ (10 số)</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" required>
+                                    <div class="invalid-feedback">Vui lòng nhập email hợp lệ</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="province" class="form-label">Tỉnh/Thành phố <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="province" required>
+                                        <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                                        <option value="hanoi">Hà Nội</option>
+                                        <option value="hochiminh">TP. Hồ Chí Minh</option>
+                                        <option value="danang">Đà Nẵng</option>
+                                        <option value="haiphong">Hải Phòng</option>
+                                        <option value="cantho">Cần Thơ</option>
+                                        <!-- Thêm các tỉnh thành khác -->
+                                    </select>
+                                    <div class="invalid-feedback">Vui lòng chọn tỉnh/thành phố</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="district" class="form-label">Quận/Huyện <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="district" required disabled>
+                                        <option value="">-- Chọn Quận/Huyện --</option>
+                                    </select>
+                                    <div class="invalid-feedback">Vui lòng chọn quận/huyện</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Địa chỉ chi tiết <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="address" rows="3" required></textarea>
+                                    <div class="invalid-feedback">Vui lòng nhập địa chỉ chi tiết</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="note" class="form-label">Ghi chú</label>
+                                    <textarea class="form-control" id="note" rows="2"></textarea>
+                                    <small class="form-text text-muted">Ghi chú về đơn hàng, ví dụ: thời gian giao hàng hoặc địa điểm giao hàng chi tiết hơn.</small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-sm mt-4 animate-checkout" style="animation-delay: 0.2s;">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-credit-card me-2"></i>
+                                Phương Thức Thanh Toán
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="payment-vnpay" class="payment-method-card selected" data-payment="vnpay">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="payment-method" id="payment-method-vnpay" value="vnpay" checked class="me-2">
+                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR.png" alt="VNPAY" height="30">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">Thanh toán qua VNPAY</h6>
+                                        <small class="text-muted">Thanh toán an toàn với VNPAY QR</small>
+                                    </div>
+                                </div>
+                                <div id="vnpay-info" class="mt-3 p-3 bg-light rounded">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-info-circle text-primary me-2"></i>
+                                        <small>Bạn sẽ được chuyển đến cổng thanh toán VNPAY để hoàn tất giao dịch.</small>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <div class="d-flex flex-wrap justify-content-center">
+                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VNPAY-QR.png" alt="QR" height="30" class="mx-2">
+                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VISA.png" alt="VISA" height="30" class="mx-2">
+                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-Mastercard.png" alt="Mastercard" height="30" class="mx-2">
+                                            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-JCB.png" alt="JCB" height="30" class="mx-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="payment-cod" class="payment-method-card mt-3" data-payment="cod">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="payment-method" id="payment-method-cod" value="cod" class="me-2">
+                                    <i class="fas fa-money-bill-wave text-success" style="font-size: 24px;"></i>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">Thanh toán khi nhận hàng (COD)</h6>
+                                        <small class="text-muted">Thanh toán bằng tiền mặt khi nhận được hàng</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thông tin đơn hàng -->
+                <div class="col-lg-4">
+                    <div class="order-summary-sticky">
+                        <div class="card shadow-sm animate-checkout">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-shopping-bag me-2"></i>
+                                    Đơn Hàng Của Bạn
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="checkout-items">
+                                    <!-- Items sẽ được thêm bởi JavaScript -->
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span>Tạm tính:</span>
+                                    <span id="subtotal">0 VNĐ</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Phí vận chuyển:</span>
+                                    <span id="shipping-fee">30,000 VNĐ</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold">
+                                    <span>Tổng cộng:</span>
+                                    <span id="total-amount" class="text-danger">0 VNĐ</span>
+                                </div>
+                                
+                                <button id="place-order-btn" class="btn btn-primary w-100 mt-3">
+                                    <i class="fas fa-lock me-2"></i>Đặt Hàng
+                                </button>
+                                
+                                <a href="cart.html" class="btn btn-outline-secondary w-100 mt-2">
+                                    <i class="fas fa-arrow-left me-2"></i>Quay lại giỏ hàng
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-3 shadow-sm animate-checkout" style="animation-delay: 0.3s;">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="fas fa-shield-alt text-success me-2"></i>
+                                    Mua sắm an toàn & bảo mật
+                                </h6>
+                                <ul class="list-unstyled mb-0 small">
+                                    <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Thanh toán an toàn qua VNPAY</li>
+                                    <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Bảo mật thông tin khách hàng</li>
+                                    <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Kiểm tra hàng trước khi thanh toán COD</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Đổi trả trong vòng 7 ngày</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer-bottom mt-auto">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p>&copy; <span id="current-year"></span> BookHaven. Bảo lưu mọi quyền.</p>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Đang tải...</span>
+                    </div>
+                    <h5>Đang xử lý thanh toán...</h5>
+                    <p class="text-muted mb-0">Vui lòng không đóng cửa sổ này</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
