@@ -1,0 +1,1289 @@
+/* CSS Variables */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Gray */
+    --accent-color: #28a745; /* Green */
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #212529;
+    --border-color: #dee2e6;
+    --font-family: 'Arial', sans-serif;
+    --border-radius: 0.25rem;
+    --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Basic Reset & Body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: darken(var(--primary-color), 10%);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: darken(var(--accent-color), 10%);
+    color: #fff;
+}
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-icon {
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--border-color);
+    color: var(--dark-color);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 0; /* For better icon centering */
+}
+.btn-icon i { font-size: 1rem; }
+.btn-icon:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+
+/* Header */
+.site-header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 25px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+}
+.main-nav ul li a.active,
+.main-nav ul li a:hover {
+    color: var(--primary-color);
+}
+.main-nav ul li a::after { /* Underline effect */
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+.main-nav ul li a.active::after,
+.main-nav ul li a:hover::after {
+    width: 100%;
+}
+
+
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.header-actions > * { /* Targets direct children */
+    margin-left: 20px;
+    font-size: 1.2rem;
+    color: var(--dark-color);
+}
+.header-actions .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.mobile-nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x600/333/fff?text=Hero+Background+Image') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Featured Books / Book Card */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.book-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    background-color: #f9f9f9;
+}
+
+.book-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-image-container img {
+    transform: scale(1.05);
+}
+
+.book-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.book-card:hover .book-actions {
+    opacity: 1;
+}
+.book-actions .btn-icon {
+    margin-bottom: 5px;
+}
+
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #fff;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+}
+.new-badge { background-color: var(--primary-color); }
+.sale-badge { background-color: #dc3545; } /* Red for sale */
+
+
+.book-info {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1; /* Allows footer (button) to stick to bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-title a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+    display: block; /* For better spacing */
+}
+.book-title a:hover {
+    color: var(--primary-color);
+}
+
+.book-author {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.book-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+.original-price {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.book-info .btn {
+    width: 100%;
+    margin-top: auto; /* Pushes button to bottom if content above is short */
+}
+
+
+/* Categories Section */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.category-card {
+    background-color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0,0,0,0.1);
+    color: var(--primary-color);
+}
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+.category-card:hover .category-icon {
+    color: var(--accent-color);
+}
+.category-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+.category-card p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Newsletter */
+.newsletter-signup {
+    text-align: center;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+.newsletter-signup .section-title {
+    color: #fff;
+}
+.newsletter-signup p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    font-size: 1rem;
+}
+.newsletter-form button {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+
+/* Footer */
+.site-footer-bottom {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 30px 0;
+    text-align: center;
+}
+.footer-bottom-content p {
+    margin-bottom: 10px;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+}
+.social-links li {
+    margin: 0 10px;
+}
+.social-links a {
+    color: var(--light-color);
+    font-size: 1.3rem;
+}
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .section-title { font-size: 1.9rem; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1.1rem; }
+    .book-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        display: none; /* Hide desktop nav */
+        position: absolute;
+        top: 100%; /* Below header */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 10px 0;
+    }
+    .main-nav.active { /* Class toggled by JS */
+        display: block;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-nav ul li {
+        margin: 10px 0;
+        margin-left: 0; /* Reset margin */
+    }
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger */
+    }
+    .header-actions .search-btn, .header-actions .user-account {
+        font-size: 1.1rem; /* Slightly smaller for mobile */
+        margin-left: 15px;
+    }
+    .cart-link { margin-left: 15px; }
+
+    .section-title { font-size: 1.7rem; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .book-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } /* Or 1 column for smaller */
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+    .newsletter-form input[type="email"] {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        margin-bottom: 10px;
+    }
+    .newsletter-form button {
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+}
+
+@media (max-width: 576px) {
+    .book-grid {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+    .logo a { font-size: 1.5rem; }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content p { font-size: 0.9rem; }
+}
+
+
+/* ... (Toàn bộ CSS cũ của bạn) ... */
+
+/* Cart Page Styles */
+#cart-items-container {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.cart-item-image img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-right: 20px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.cart-item-details p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Khoảng cách với nút xóa */
+}
+
+.cart-item-quantity button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.cart-item-quantity button:hover {
+    background-color: #ddd;
+}
+
+.cart-item-quantity input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 0 5px;
+    font-size: 1rem;
+    /* Tắt mũi tên mặc định của input number */
+    -moz-appearance: textfield;
+}
+.cart-item-quantity input::-webkit-outer-spin-button,
+.cart-item-quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.cart-item-price {
+    font-weight: bold;
+    margin-right: 20px; /* Khoảng cách với nút xóa */
+    min-width: 100px; /* Đảm bảo giá không bị co lại quá */
+    text-align: right;
+}
+
+.cart-item-remove button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+.cart-item-remove button:hover {
+    background-color: #c82333;
+}
+
+#cart-summary {
+    text-align: right;
+    margin-top: 20px;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 20px;
+}
+
+#cart-summary .cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#cart-summary .btn-checkout {
+    margin-right: 10px;
+}
+
+/* ... (Toàn bộ CSS cũ của bạn) ... */
+
+/* Product Detail Page Styles */
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Mặc định 1 cột cho mobile */
+    gap: 30px;
+    align-items: flex-start; /* Căn các item lên trên */
+}
+
+.product-detail-image-gallery {
+    text-align: center; /* Căn giữa ảnh */
+}
+
+.product-detail-image-gallery img.main-product-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px; /* Giới hạn chiều cao ảnh */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    object-fit: contain; /* Hiển thị toàn bộ ảnh, không bị cắt */
+}
+
+/* (Nếu có thumbnail gallery sau này)
+.thumbnail-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.thumbnail-images img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+.thumbnail-images img:hover,
+.thumbnail-images img.active-thumb {
+    border-color: var(--primary-color);
+}
+*/
+
+.product-detail-info h1.product-title-detail {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.product-detail-info .product-author-detail {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.product-detail-info .product-price-detail {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+.product-price-detail .original-price-detail {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.product-detail-info .product-description-detail {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #555;
+}
+.product-description-detail h4 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+.product-description-detail ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+
+.product-detail-actions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center; /* Căn các nút thẳng hàng */
+}
+.product-detail-actions .btn {
+    margin-right: 15px; /* Khoảng cách giữa các nút */
+    padding: 12px 25px; /* Nút to hơn */
+}
+/* Nút thêm vào giỏ trên trang chi tiết */
+.product-detail-actions .add-to-cart-btn-detail {
+    min-width: 200px; /* Độ rộng tối thiểu cho nút */
+}
+
+.product-specifications {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-top: 30px;
+}
+.product-specifications h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+.product-specifications ul {
+    list-style: none;
+    padding-left: 0;
+}
+.product-specifications ul li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+.product-specifications ul li strong {
+    min-width: 120px; /* Căn đều các label */
+    display: inline-block;
+}
+
+
+/* Bố cục 2 cột cho màn hình lớn hơn */
+@media (min-width: 768px) {
+    .product-detail-layout {
+        grid-template-columns: 1fr 1.5fr; /* Chia cột cho ảnh và thông tin */
+        /* Hoặc 40% 60% */
+        /* grid-template-columns: 0.8fr 1.2fr; */
+    }
+    .product-detail-image-gallery img.main-product-image {
+        max-height: 600px;
+    }
+}
+
+#product-loading-message, #product-not-found-message {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 40px 0;
+    color: var(--secondary-color);
+}
+/* ... (Toàn bộ CSS cũ của bạn) ... */
+
+/* Authentication Page Styles */
+.auth-page {
+    background-color: var(--light-color); /* Hoặc một màu nền khác bạn muốn */
+    min-height: calc(100vh - 150px); /* Chiều cao tối thiểu để footer ở cuối */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px; /* Giới hạn độ rộng của form */
+}
+
+.auth-container .section-title {
+    font-size: 1.8rem; /* Tiêu đề nhỏ hơn chút */
+    margin-bottom: 25px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--dark-color);
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="email"]:focus,
+.auth-form input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.auth-form .btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+.auth-switch a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.form-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    text-align: center;
+}
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Header Actions Updated */
+.header-actions .user-info,
+.header-actions .user-logout-btn {
+    color: var(--dark-color);
+    margin-left: 15px;
+    font-size: 0.95rem;
+    display: flex; /* Để icon và text thẳng hàng */
+    align-items: center;
+}
+.header-actions .user-info i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+.header-actions .user-logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-weight: 500;
+}
+.header-actions .user-logout-btn:hover {
+    color: var(--primary-color);
+}
+.header-actions .user-account.active,
+.header-actions .user-register.active {
+    color: var(--primary-color); /* Để làm nổi bật link trang hiện tại */
+    font-weight: bold;
+}
+/* ... (Toàn bộ CSS cũ của bạn, bao gồm cả CSS cho .auth-page) ... */
+
+/* Pagination Controls Styles */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px 0;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+}
+
+.pagination-controls button,
+.pagination-controls span { /* span dùng cho "..." */
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    min-width: 40px; /* Đảm bảo nút không quá nhỏ */
+    text-align: center;
+    margin-bottom: 5px; /* Khoảng cách nếu xuống dòng */
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.pagination-controls button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    cursor: default;
+}
+
+.pagination-controls button:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+    border-color: #ddd;
+}
+
+.pagination-controls span.ellipsis {
+    border: none;
+    cursor: default;
+    padding: 8px 5px; /* Giảm padding cho dấu ... */
+}
+
+/* Tối ưu hiển thị ảnh sách */
+.book-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    background-color: #f9f9f9;
+}
+
+.book-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-image-container img {
+    transform: scale(1.05);
+}
+
+/* Thông báo thêm vào giỏ hàng */
+.cart-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    z-index: 1000;
+    max-width: 300px;
+    transform: translateX(110%);
+    transition: transform 0.3s ease-out;
+}
+
+.cart-notification.show {
+    transform: translateX(0);
+}
+
+.cart-notification-content {
+    display: flex;
+    align-items: center;
+}
+
+.cart-notification-content i {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    margin-right: 10px;
+}
+
+.cart-notification-content p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Hiệu ứng loading lazy cho ảnh */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.book-image-container img[loading="lazy"] {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Hiển thị "không có sản phẩm" */
+.no-products-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+/* Search Modal */
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1050;
+    display: none;
+}
+
+.search-modal.show {
+    display: block;
+}
+
+.search-modal-content {
+    width: 90%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 5vh auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.search-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+}
+
+.search-close-btn:hover {
+    color: #333;
+}
+
+.search-form-container {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-form {
+    display: flex;
+    position: relative;
+}
+
+.search-form input {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-form button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #777;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.search-results {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.search-result-image {
+    width: 80px;
+    min-width: 80px;
+    height: 120px;
+    margin-right: 1rem;
+    overflow: hidden;
+}
+
+.search-result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.search-result-info {
+    flex-grow: 1;
+}
+
+.search-result-title {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+}
+
+.search-result-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.search-result-title a:hover {
+    color: var(--primary-color);
+}
+
+.search-result-author {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-result-price {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.search-no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Thêm đoạn CSS này vào file style.css của bạn */
+
+/* User dropdown styling */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-account.logged-in {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.dropdown-icon {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 100;
+    padding: 0.5rem 0;
+    display: none;
+    margin-top: 5px;
+}
+
+.dropdown-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #e9ecef;
+    border: none;
+    margin: 0.5rem 0;
+}
+
+/* Notification styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-left: 4px solid var(--primary-color);
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    max-width: 300px;
+}
+
+.notification-content i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.notification-content p {
+    margin: 0;
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

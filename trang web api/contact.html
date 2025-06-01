@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - BookHaven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .contact-form {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .contact-form .form-control {
+            margin-bottom: 1rem;
+        }
+        .contact-info {
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        .contact-info-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .contact-info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            min-width: 24px;
+        }
+        .contact-map {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .contact-section {
+            padding: 3rem 0;
+        }
+        .contact-heading {
+            margin-bottom: 3rem;
+        }
+        .social-contact {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .social-contact a {
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+        .social-contact a:hover {
+            color: var(--primary-color);
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding-right: 2.5rem;
+        }
+        .faq-question:after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active:after {
+            transform: translateY(-50%) rotate(-180deg);
+        }
+        .faq-answer {
+            padding: 1rem;
+            display: none;
+        }
+        .faq-answer.show {
+            display: block;
+        }
+    </style>
+</head>
+<body id="contact-page-body">
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">📚 BookHaven</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="index.html#categories-section">Danh Mục</a></li>
+                    <li><a href="index.html#featured-books-section">Tất Cả Sách</a></li>
+                    <li><a href="about.html">Giới Thiệu</a></li>
+                    <li><a href="contact.html" class="active">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions" id="header-actions-container"> 
+                <button class="search-btn" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+                <a href="login.html" class="user-account" aria-label="Đăng nhập"><i class="fas fa-user"></i> Đăng Nhập</a>
+                <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h1 class="section-title text-center">Liên Hệ Với Chúng Tôi</h1>
+                <p class="text-center">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <div class="contact-form">
+                            <h3 class="mb-4">Gửi thông tin liên hệ</h3>
+                            <form id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name" class="form-label">Họ và tên</label>
+                                            <input type="text" id="name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone" class="form-label">Số điện thoại</label>
+                                            <input type="tel" id="phone" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="subject" class="form-label">Chủ đề</label>
+                                            <input type="text" id="subject" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="message" class="form-label">Nội dung</label>
+                                            <textarea id="message" rows="5" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="contact-info">
+                            <h3 class="mb-4">Thông tin liên hệ</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <h5>Địa chỉ</h5>
+                                    <p>123 Đường ABC, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <h5>Điện thoại</h5>
+                                    <p>(+84) 28 1234 5678</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <h5>Email</h5>
+                                    <p>info@bookhaven.vn</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="contact-info-text">
+                                    <h5>Giờ làm việc</h5>
+                                    <p>Thứ 2 - Thứ 6: 8:00 - 17:30<br>Thứ 7: 8:00 - 12:00<br>Chủ nhật: Đóng cửa</p>
+                                </div>
+                            </div>
+
+                            <div class="social-contact">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-map-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Bản đồ</h2>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4241674197006!2d106.69901231532035!3d10.777228362124736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4641de8879%3A0xc35b1e5ade28c130!2zSOG7kyBDaMOtIE1pbmggQ2l0eSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1622503512519!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section section-padding">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Câu hỏi thường gặp</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="faq-item">
+                            <div class="faq-question">Phí vận chuyển của BookHaven là bao nhiêu?</div>
+                            <div class="faq-answer">BookHaven áp dụng phí vận chuyển là 30.000 VNĐ cho mọi đơn hàng. Đơn hàng trên 300.000 VNĐ sẽ được miễn phí vận chuyển trong nội thành Hà Nội và TP. Hồ Chí Minh.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Tôi có thể đổi/trả sách không?</div>
+                            <div class="faq-answer">BookHaven chấp nhận đổi/trả sách trong vòng 7 ngày kể từ ngày nhận hàng nếu sách bị lỗi từ nhà sản xuất. Sách đổi/trả phải còn nguyên vẹn, không có dấu hiệu đã sử dụng.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Thời gian giao hàng thông thường là bao lâu?</div>
+                            <div class="faq-answer">Thời gian giao hàng thông thường là 2-3 ngày đối với các thành phố lớn và 3-5 ngày đối với các tỉnh thành khác. Trong một số trường hợp đặc biệt, thời gian giao hàng có thể kéo dài hơn.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">BookHaven có cửa hàng thực tế không?</div>
+                            <div class="faq-answer">Có, BookHaven có cửa hàng thực tế tại 123 Đường ABC, Quận 1, TP. Hồ Chí Minh. Bạn có thể ghé thăm cửa hàng trong giờ làm việc từ Thứ 2 - Thứ 6: 8:00 - 17:30, Thứ 7: 8:00 - 12:00.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">BookHaven có nhận đặt sách không có sẵn không?</div>
+                            <div class="faq-answer">Có, BookHaven nhận đặt sách không có sẵn trong kho. Thời gian đặt hàng sẽ tùy thuộc vào tình trạng sẵn có của sách từ các nhà xuất bản và đối tác.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p>&copy; <span id="current-year"></span> BookHaven. Bảo lưu mọi quyền.</p>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-header">
+                <h3>Tìm kiếm</h3>
+                <button class="search-close-btn" id="searchCloseBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="search-form-container">
+                <form id="searchForm" class="search-form">
+                    <input type="text" id="searchInput" placeholder="Nhập tên sách, tác giả..." autocomplete="off">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="search-results" id="searchResults">
+                <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    <script src="fetchBookImages.js"></script>
+    <script>
+        // xử lý FAQ
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Đóng tất cả FAQ
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.style.display = 'none';
+                    });
+                    
+                    // Mở FAQ hiện tại nếu chưa mở
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Form xử lý
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Cảm ơn bạn đã liên hệ với chúng tôi! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

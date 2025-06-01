@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - BookHaven</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body id="product-detail-page-body"> 
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">📚 BookHaven</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="index.html#categories-section">Danh Mục</a></li>
+                    <li><a href="index.html#featured-books-section">Tất Cả Sách</a></li>
+                    <li><a href="#">Giới Thiệu</a></li>
+                    <li><a href="#">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+                <a href="#" class="user-account" aria-label="Tài khoản"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="section-padding">
+        <div class="container">
+            <div id="product-detail-container" class="product-detail-layout">
+                
+                <p id="product-loading-message">Đang tải thông tin sản phẩm...</p>
+            </div>
+
+            
+            <section class="product-reviews section-padding bg-light" style="margin-top: 40px;">
+                <h2 class="section-title">Đánh Giá Sản Phẩm</h2>
+                <div id="reviews-container">
+                    <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+                    
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p>&copy; <span id="current-year"></span> BookHaven. Bảo lưu mọi quyền.</p>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>
